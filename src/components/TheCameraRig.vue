@@ -33,6 +33,7 @@
         <a-entity
           id="dummy-hand-right"
           position="0.3 -0.4 -0.5"
+          rotation="0 0 -50"
         ></a-entity>
         <a-entity
           id="dummy-hand-left"
