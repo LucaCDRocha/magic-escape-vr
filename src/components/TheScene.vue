@@ -65,7 +65,7 @@
 				simple-grab
 				clickable
 				outline-on-event
-				teleport-camera-rig="y: 8"
+				teleport-camera-rig="y: 8; handleRotation: false"
 				@grab="handleGrab">
 				<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
 					<a-entity
@@ -83,7 +83,7 @@
 				</a-entity>
 			</a-box>
 
-			<TheStartRoom />
+			<TheStartRoom :lightColor="lightColor" />
 			<TheRedRoom :lightColor="lightColor" />
 		</template>
 
