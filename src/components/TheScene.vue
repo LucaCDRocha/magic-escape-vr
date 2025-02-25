@@ -20,12 +20,14 @@
 
 	const lightColor = ref("white");
 
+	const grab = ref(false);
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
 		const rightHand = document.querySelector("#hand-right");
 		if (magicWand) {
 			magicWand.setAttribute("rotation", "0 -90 0");
 			magicWand.setAttribute("position", "-1 0 -25");
+			grab.value = !grab.value;
 			changeLightColor("red");
 		}
 		if (rightHand) {
@@ -36,6 +38,44 @@
 	const changeLightColor = (color) => {
 		lightColor.value = color;
 	};
+
+	const keyDown = ref(false);
+	const handleLights = (event) => {
+		if (!grab.value) {
+			return;
+		}
+		if (event.key === "l") {
+			changeLightColor("white");
+		}
+		if (event.key === "r") {
+			changeLightColor("red");
+		}
+		if (event.key === "g") {
+			changeLightColor("green");
+		}
+		if (event.key === "b") {
+			changeLightColor("blue");
+		}
+		if (event.key === "x") {
+			keyDown.value = !keyDown.value;
+			const magicWand = document?.querySelector("#magic-wand-container");
+			const colors = document?.querySelector("#colors-choose");
+			colors.setAttribute("position", magicWand.getAttribute("position"));
+			colors.setAttribute("rotation", magicWand.getAttribute("rotation"));
+		}
+	};
+
+	window.addEventListener("keydown", handleLights);
+	window.addEventListener("mousedown", (event) => {
+		if (event.button === 1) {
+			handleLights({ key: "x" });
+		}
+	});
+	window.addEventListener("mouseup", (event) => {
+		if (event.button === 1) {
+			handleLights({ key: "x" });
+		}
+	});
 </script>
 
 <template>
@@ -53,6 +93,15 @@
 
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="0.1"></a-light>
+
+			<a-entity id="colors-choose" position="0 0 0">
+				<a-entity v-if="keyDown" position="-0.3 0 0" rotation="90 0 0">
+					<a-sphere radius="0.02" position="0 0 0.04" color="blue" shader="flat"></a-sphere>
+					<a-sphere radius="0.02" position="0 0.04 0" color="green" shader="flat"></a-sphere>
+					<a-sphere radius="0.02" position="0 0 -0.04" color="red" shader="flat"></a-sphere>
+					<a-sphere radius="0.02" position="0 -0.04 0" color="white" shader="flat"></a-sphere>
+				</a-entity>
+			</a-entity>
 
 			<!-- Add a magic wand -->
 			<a-box
@@ -72,10 +121,13 @@
 				teleport-camera-rig="y: 8; handleRotation: false"
 				@grab="handleGrab">
 				<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
-					<a-entity
-						position="-25 0.5 0.3"
-						animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true">
-						<a-sphere radius="0.5" :color="lightColor" shader="flat"></a-sphere>
+					<a-entity position="-25 0.5 0.3">
+						<a-sphere
+							radius="0.5"
+							:color="lightColor"
+							shader="flat"
+							animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true"></a-sphere>
+
 						<a-light
 							type="point"
 							radius="2"
