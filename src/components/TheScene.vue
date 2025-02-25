@@ -22,10 +22,14 @@
 
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
+		const rightHand = document.querySelector("#hand-right");
 		if (magicWand) {
 			magicWand.setAttribute("rotation", "0 -90 0");
 			magicWand.setAttribute("position", "-1 0 -25");
 			changeLightColor("red");
+		}
+		if (rightHand) {
+			rightHand.setAttribute("raycaster", "showLine: false");
 		}
 	};
 
