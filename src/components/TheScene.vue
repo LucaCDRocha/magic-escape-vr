@@ -17,27 +17,18 @@
 	});
 
 	const allAssetsLoaded = ref(false);
+
+	const handleGrab = () => {
+		const magicWand = document.querySelector("#wand");
+		if (magicWand) {
+			magicWand.setAttribute("rotation", "0 -90 0");
+			magicWand.setAttribute("position", "-1 0 -25");
+		}
+	};
 </script>
 
 <template>
-	<a-scene
-		background="color: black;"
-		:webxr="`
-      requiredFeatures: local-floor;
-      referenceSpaceType: local-floor;
-      optionalFeatures: dom-overlay;
-      overlayElement: ${overlaySelector};
-    `"
-		xr-mode-ui="XRMode: xr"
-		physx="
-      autoLoad: true;
-      delay: 1000;
-      useDefaultScene: false;
-      wasmUrl: lib/physx.release.wasm;
-    "
-		outline="color:red;"
-		stats
-		simple-grab>
+	<a-scene background="color: black;" outline="color:red;" stats simple-grab>
 		<a-assets @loaded="allAssetsLoaded = true">
 			<a-asset-item id="magic-wand" src="assets/magic_wand.glb"></a-asset-item>
 			<a-asset-item id="ceil-lantern" src="assets/lantern.glb"></a-asset-item>
@@ -87,28 +78,36 @@
 			</a-entity>
 
 			<!-- Add a magic wand -->
-			<a-entity
-				id="magic-wand"
-				gltf-model="#magic-wand"
+			<a-box
+				id="magic-wand-container"
 				position="0 1 -1"
 				rotation="0 0 -90"
-				scale="0.015 0.015 0.015"
+				scale="0.008 0.008 0.008"
+				width="70"
+				height="2"
+				depth="3"
+				color="blue"
+				opacity="0"
+				class="grab-hitbox"
 				simple-grab
 				clickable
-				outline-on-event>
-				<a-entity
-					position="-25 0.5 0.3"
-					animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true">
-					<a-sphere radius="0.5" color="white" shader="flat"></a-sphere>
-					<a-light
-						type="point"
-						radius="2"
-						color="white"
-						intensity="0.5"
-						animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
-					</a-light>
+				outline-on-event
+				@grab="handleGrab">
+				<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
+					<a-entity
+						position="-25 0.5 0.3"
+						animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true">
+						<a-sphere radius="0.5" color="white" shader="flat"></a-sphere>
+						<a-light
+							type="point"
+							radius="2"
+							color="white"
+							intensity="0.5"
+							animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
+						</a-light>
+					</a-entity>
 				</a-entity>
-			</a-entity>
+			</a-box>
 
 			<!-- Add walls around the player -->
 			<a-box position="0 1.5 -5" rotation="0 0 0" width="10" height="3" depth="0.1" src="#wood-texture"></a-box>
