@@ -4,12 +4,14 @@
 	import TheCameraRig from "./TheCameraRig.vue";
 	import TheStartRoom from "./TheStartRoom.vue";
 	import TheRedRoom from "./TheRedRoom.vue";
+	import Wand from "./objects/Wand.vue";
 
 	import "../aframe/simple-grab.js";
 	import "../aframe/outline.js";
 	import "../aframe/bloom.js";
 	import "../aframe/clickable.js";
 	import "../aframe/teleport-camera-rig.js";
+	import "../aframe/emit-when-near.js";
 
 	defineProps({
 		scale: Number,
@@ -36,6 +38,7 @@
 	};
 
 	const changeLightColor = (color) => {
+		console.log("changeLightColor", color);
 		lightColor.value = color;
 	};
 
@@ -64,7 +67,6 @@
 			const wand = document.querySelector("#wand");
 			// get the global position of the wand
 			wand.querySelector("a-sphere").object3D.getWorldPosition(wandPosition);
-			console.log(wandPosition);
 
 			if (wand) {
 				colors.setAttribute("position", wandPosition);
@@ -118,48 +120,38 @@
 
 			<a-entity id="colors-choose" position="0 0 0">
 				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
-					<a-sphere radius="0.02" position="0 0 0.04" color="blue" shader="flat"></a-sphere>
-					<a-sphere radius="0.02" position="0 0.04 0" color="green" shader="flat"></a-sphere>
-					<a-sphere radius="0.02" position="0 0 -0.04" color="red" shader="flat"></a-sphere>
-					<a-sphere radius="0.02" position="0 -0.04 0" color="white" shader="flat"></a-sphere>
+					<a-sphere
+						radius="0.02"
+						position="0 0 0.04"
+						color="blue"
+						shader="flat"
+						emit-when-near="target: #sphere-wand; distance:0.02;"
+						@click="changeLightColor('blue')"></a-sphere>
+					<a-sphere
+						radius="0.02"
+						position="0 0.04 0"
+						color="green"
+						shader="flat"
+						emit-when-near="target: #sphere-wand; distance:0.02;"
+						@click="changeLightColor('green')"></a-sphere>
+					<a-sphere
+						radius="0.02"
+						position="0 0 -0.04"
+						color="red"
+						shader="flat"
+						emit-when-near="target: #sphere-wand; distance:0.02;"
+						@click="changeLightColor('red')"></a-sphere>
+					<a-sphere
+						radius="0.02"
+						position="0 -0.04 0"
+						color="white"
+						shader="flat"
+						emit-when-near="target: #sphere-wand; distance:0.02;"
+						@click="changeLightColor('white')"></a-sphere>
 				</a-entity>
 			</a-entity>
 
-			<!-- Add a magic wand -->
-			<a-box
-				id="magic-wand-container"
-				position="0 1.5 -0.5"
-				rotation="0 0 -90"
-				scale="0.008 0.008 0.008"
-				width="70"
-				height="2"
-				depth="3"
-				color="blue"
-				opacity="0"
-				class="grab-hitbox"
-				simple-grab
-				clickable
-				outline-on-event
-				teleport-camera-rig="y: 8; handleRotation: false"
-				@grab="handleGrab">
-				<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
-					<a-entity position="-25 0.5 0.3">
-						<a-sphere
-							radius="0.5"
-							:color="lightColor"
-							shader="flat"
-							animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true"></a-sphere>
-
-						<a-light
-							type="point"
-							radius="2"
-							:color="lightColor"
-							intensity="0.5"
-							animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
-						</a-light>
-					</a-entity>
-				</a-entity>
-			</a-box>
+			<Wand :lightColor="lightColor" @grab="handleGrab" />
 
 			<TheStartRoom :lightColor="lightColor" />
 			<TheRedRoom :lightColor="lightColor" />
