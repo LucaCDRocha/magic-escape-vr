@@ -1,5 +1,5 @@
 <script setup>
-	import { ref } from "vue";
+	import { onMounted, ref } from "vue";
 
 	import TheCameraRig from "./TheCameraRig.vue";
 	import TheStartRoom from "./TheStartRoom.vue";
@@ -57,24 +57,46 @@
 			changeLightColor("blue");
 		}
 		if (event.key === "x") {
-			keyDown.value = !keyDown.value;
 			const magicWand = document?.querySelector("#magic-wand-container");
 			const colors = document?.querySelector("#colors-choose");
-			colors.setAttribute("position", magicWand.getAttribute("position"));
-			colors.setAttribute("rotation", magicWand.getAttribute("rotation"));
+			const wandPosition = new THREE.Vector3();
+			const wandRotation = magicWand.getAttribute("rotation");
+			const wand = document.querySelector("#wand");
+			// get the global position of the wand
+			wand.querySelector("a-sphere").object3D.getWorldPosition(wandPosition);
+			console.log(wandPosition);
+
+			if (wand) {
+				colors.setAttribute("position", wandPosition);
+				colors.setAttribute("rotation", wandRotation);
+			}
 		}
 	};
 
 	window.addEventListener("keydown", handleLights);
 	window.addEventListener("mousedown", (event) => {
 		if (event.button === 1) {
+			keyDown.value = true;
 			handleLights({ key: "x" });
 		}
 	});
 	window.addEventListener("mouseup", (event) => {
 		if (event.button === 1) {
+			keyDown.value = false;
 			handleLights({ key: "x" });
 		}
+	});
+
+	onMounted(() => {
+		const handRight = document.querySelector("#hand-right");
+		handRight.addEventListener("buttondown", (event) => {
+			keyDown.value = true;
+			handleLights({ key: "x" });
+		});
+		handRight.addEventListener("buttonup", (event) => {
+			keyDown.value = false;
+			handleLights({ key: "x" });
+		});
 	});
 </script>
 
@@ -95,7 +117,7 @@
 			<a-light type="ambient" :color="lightColor" intensity="0.1"></a-light>
 
 			<a-entity id="colors-choose" position="0 0 0">
-				<a-entity v-if="keyDown" position="-0.3 0 0" rotation="90 0 0">
+				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
 					<a-sphere radius="0.02" position="0 0 0.04" color="blue" shader="flat"></a-sphere>
 					<a-sphere radius="0.02" position="0 0.04 0" color="green" shader="flat"></a-sphere>
 					<a-sphere radius="0.02" position="0 0 -0.04" color="red" shader="flat"></a-sphere>

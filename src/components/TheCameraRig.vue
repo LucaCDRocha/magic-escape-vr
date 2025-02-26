@@ -63,6 +63,7 @@
       <a-entity
         id="hand-right"
         hand-controls="hand: right"
+        tracked-controls="hand: right"
         laser-controls="hand: right"
         raycaster="far: 4; objects: [clickable]; showLine: true;"
         position="0 1.5 0"
