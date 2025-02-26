@@ -106,15 +106,15 @@
 		simple-grab
 		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
 		<a-assets @loaded="allAssetsLoaded = true">
-			<a-asset-item id="magic-wand" src="assets/magic_wand.glb"></a-asset-item>
-			<a-asset-item id="ceil-lantern" src="assets/lantern.glb"></a-asset-item>
-			<a-asset-item id="candle-lantern" src="assets/candle_lantern.glb"></a-asset-item>
-			<a-asset-item id="portal-frame" src="assets/portal_frame.glb"></a-asset-item>
-			<a-asset-item id="book-shelf" src="assets/book_shelf.glb"></a-asset-item>
+			<a-asset-item id="magic-wand" src="assets/objects/magic_wand.glb"></a-asset-item>
+			<a-asset-item id="ceil-lantern" src="assets/objects/lantern.glb"></a-asset-item>
+			<a-asset-item id="candle-lantern" src="assets/objects/candle_lantern.glb"></a-asset-item>
+			<a-asset-item id="portal-frame" src="assets/objects/portal_frame.glb"></a-asset-item>
+			<a-asset-item id="book-shelf" src="assets/objects/book_shelf.glb"></a-asset-item>
 
 			<!-- charge a texture -->
-			<img id="wood-texture" src="/assets/wooden-background.jpg" />
-			<img id="portal-texture" src="/assets/portalTexture.jpg" />
+			<img id="wood-texture" src="/assets/textures/wooden-background.jpg" />
+			<img id="portal-texture" src="/assets/textures/portalTexture.jpg" />
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
