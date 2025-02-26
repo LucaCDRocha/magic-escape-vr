@@ -111,7 +111,7 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="0.3"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="2"></a-light>
 
 			<a-entity id="colors-choose" position="0 0 0">
 				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
