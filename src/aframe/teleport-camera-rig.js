@@ -6,9 +6,9 @@ AFRAME.registerComponent("teleport-camera-rig", {
 		rig: { type: "selector", default: "#camera-rig" },
 		camera: { type: "selector", default: "[camera]" },
 		on: { type: "string", default: "click" },
-		x: { type: "number", default: null },
-		y: { type: "number", default: null },
-		z: { type: "number", default: null },
+		x: { type: "number", default: Infinity },
+		y: { type: "number", default: Infinity },
+		z: { type: "number", default: Infinity },
 		handleRotation: { type: "boolean", default: true },
 		rot: { type: "number", default: 0 }, // rotation in degrees
 	},
@@ -20,15 +20,15 @@ AFRAME.registerComponent("teleport-camera-rig", {
 
 	onEvent: function () {
 		// Put the rig at the specified position
-		if (!isNaN(this.data.x)) {
+		if (isFinite(this.data.x)) {
 			console.log("x" + this.data.x);
 			this.data.rig.object3D.position.x = this.data.x;
 		}
-		if (!isNaN(this.data.y)) {
+		if (isFinite(this.data.y)) {
 			console.log("y" + this.data.y);
 			this.data.rig.object3D.position.y = this.data.y;
 		}
-		if (!isNaN(this.data.z)) {
+		if (isFinite(this.data.z)) {
 			console.log("z" + this.data.z);
 			this.data.rig.object3D.position.z = this.data.z;
 		}
