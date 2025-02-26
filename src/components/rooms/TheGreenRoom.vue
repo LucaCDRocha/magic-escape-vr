@@ -18,7 +18,7 @@
 	<!-- Add a ceiling light -->
 	<CeilLantern position="0 18.15 0" :color="lightColor" />
 	<!-- Add a candle lantern -->
-	<CandleLantern position="0 16.04 -2.5" :color="lightColor" />
+	<CandleLantern position="-2.5 16.04 -2.5" :color="lightColor" />
 	<!-- Add a book shelf -->
 	<BookShelf position="2 16 -2.8" rotation="0 180 0" />
 </template>

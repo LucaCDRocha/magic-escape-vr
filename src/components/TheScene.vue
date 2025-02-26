@@ -98,7 +98,12 @@
 </script>
 
 <template>
-	<a-scene background="color: black;" outline="color:red;" stats simple-grab>
+	<a-scene
+		background="color: black;"
+		outline="color:red;"
+		stats
+		simple-grab
+		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
 		<a-assets @loaded="allAssetsLoaded = true">
 			<a-asset-item id="magic-wand" src="assets/magic_wand.glb"></a-asset-item>
 			<a-asset-item id="ceil-lantern" src="assets/lantern.glb"></a-asset-item>
@@ -111,7 +116,7 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="2"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="0.1"></a-light>
 
 			<a-entity id="colors-choose" position="0 0 0">
 				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
@@ -119,8 +124,8 @@
 						<a-sphere
 							v-if="lightColor !== color"
 							:radius="0.02"
-							:position="`0 ${index === 0 ? '0.04' : index === 1 ? '-0.04' : '0'} ${
-								index === 2 ? '0.04' : index === 3 ? '-0.04' : '0'
+							:position="`0 ${index === 0 ? '0.06' : index === 1 ? '-0.06' : '0'} ${
+								index === 2 ? '0.06' : index === 3 ? '-0.06' : '0'
 							}`"
 							:color="color"
 							shader="flat"
