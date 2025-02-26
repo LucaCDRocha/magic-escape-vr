@@ -2,8 +2,11 @@
 	import { onMounted, ref } from "vue";
 
 	import TheCameraRig from "./TheCameraRig.vue";
-	import TheStartRoom from "./TheStartRoom.vue";
-	import TheRedRoom from "./TheRedRoom.vue";
+	import TheStartRoom from "./rooms/TheStartRoom.vue";
+	import TheRedRoom from "./rooms/TheRedRoom.vue";
+	import TheWhiteRoom from "./rooms/TheWhiteRoom.vue";
+	import TheBlueRoom from "./rooms/TheBlueRoom.vue";
+	import TheGreenRoom from "./rooms/TheGreenRoom.vue";
 	import Wand from "./objects/Wand.vue";
 
 	import "../aframe/simple-grab.js";
@@ -42,22 +45,15 @@
 		lightColor.value = color;
 	};
 
+	const selectColor = (color) => {
+		keyDown.value = false;
+		changeLightColor(color);
+	};
+
 	const keyDown = ref(false);
 	const handleLights = (event) => {
 		if (!grab.value) {
 			return;
-		}
-		if (event.key === "l") {
-			changeLightColor("white");
-		}
-		if (event.key === "r") {
-			changeLightColor("red");
-		}
-		if (event.key === "g") {
-			changeLightColor("green");
-		}
-		if (event.key === "b") {
-			changeLightColor("blue");
 		}
 		if (event.key === "x") {
 			const magicWand = document?.querySelector("#magic-wand-container");
@@ -66,7 +62,7 @@
 			const wandRotation = magicWand.getAttribute("rotation");
 			const wand = document.querySelector("#wand");
 			// get the global position of the wand
-			wand.querySelector("a-sphere").object3D.getWorldPosition(wandPosition);
+			wand.querySelector("#sphere-wand").object3D.getWorldPosition(wandPosition);
 
 			if (wand) {
 				colors.setAttribute("position", wandPosition);
@@ -75,15 +71,14 @@
 		}
 	};
 
-	window.addEventListener("keydown", handleLights);
 	window.addEventListener("mousedown", (event) => {
-		if (event.button === 1) {
+		if (event.button === 2) {
 			keyDown.value = true;
 			handleLights({ key: "x" });
 		}
 	});
 	window.addEventListener("mouseup", (event) => {
-		if (event.button === 1) {
+		if (event.button === 2) {
 			keyDown.value = false;
 			handleLights({ key: "x" });
 		}
@@ -116,38 +111,23 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="0.1"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="0.3"></a-light>
 
 			<a-entity id="colors-choose" position="0 0 0">
 				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
-					<a-sphere
-						radius="0.02"
-						position="0 0 0.04"
-						color="blue"
-						shader="flat"
-						emit-when-near="target: #sphere-wand; distance:0.02;"
-						@click="changeLightColor('blue')"></a-sphere>
-					<a-sphere
-						radius="0.02"
-						position="0 0.04 0"
-						color="green"
-						shader="flat"
-						emit-when-near="target: #sphere-wand; distance:0.02;"
-						@click="changeLightColor('green')"></a-sphere>
-					<a-sphere
-						radius="0.02"
-						position="0 0 -0.04"
-						color="red"
-						shader="flat"
-						emit-when-near="target: #sphere-wand; distance:0.02;"
-						@click="changeLightColor('red')"></a-sphere>
-					<a-sphere
-						radius="0.02"
-						position="0 -0.04 0"
-						color="white"
-						shader="flat"
-						emit-when-near="target: #sphere-wand; distance:0.02;"
-						@click="changeLightColor('white')"></a-sphere>
+					<template v-for="(color, index) in ['red', 'green', 'blue', 'white']" :key="color">
+						<a-sphere
+							v-if="lightColor !== color"
+							:radius="0.02"
+							:position="`0 ${index === 0 ? '0.04' : index === 1 ? '-0.04' : '0'} ${
+								index === 2 ? '0.04' : index === 3 ? '-0.04' : '0'
+							}`"
+							:color="color"
+							shader="flat"
+							emit-when-near="target: #sphere-wand; distance:0.03;"
+							:teleport-camera-rig="'y: ' + (index + 1) * 8 + '; handleRotation: false'"
+							@click="selectColor(color)"></a-sphere>
+					</template>
 				</a-entity>
 			</a-entity>
 
@@ -155,6 +135,9 @@
 
 			<TheStartRoom :lightColor="lightColor" />
 			<TheRedRoom :lightColor="lightColor" />
+			<TheWhiteRoom :lightColor="lightColor" />
+			<TheBlueRoom :lightColor="lightColor" />
+			<TheGreenRoom :lightColor="lightColor" />
 		</template>
 
 		<TheCameraRig />

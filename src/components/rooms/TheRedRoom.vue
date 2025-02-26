@@ -1,15 +1,15 @@
 <script setup>
-	import BookShelf from "./objects/BookShelf.vue";
-	import CandleLantern from "./objects/CandleLantern.vue";
-	import CeilLantern from "./objects/CeilLantern.vue";
-	import "../aframe/simple-grab.js";
-	import "../aframe/outline.js";
-	import "../aframe/clickable.js";
-	import "../aframe/teleport-camera-rig.js";
+	import BookShelf from "../objects/BookShelf.vue";
+	import CandleLantern from "../objects/CandleLantern.vue";
+	import CeilLantern from "../objects/CeilLantern.vue";
+	import "../../aframe/simple-grab.js";
+	import "../../aframe/outline.js";
+	import "../../aframe/clickable.js";
+	import "../../aframe/teleport-camera-rig.js";
 
-    const props = defineProps({
-        lightColor: { type: String, default: "white" },
-    });
+	const props = defineProps({
+		lightColor: { type: String, default: "white" },
+	});
 </script>
 
 <template>

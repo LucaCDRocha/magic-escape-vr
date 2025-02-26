@@ -1,5 +1,5 @@
 <script setup>
-    import CeilLantern from './objects/CeilLantern.vue';
+    import CeilLantern from '../objects/CeilLantern.vue';
 
     const props = defineProps({
         lightColor: { type: String, default: 'white' },
