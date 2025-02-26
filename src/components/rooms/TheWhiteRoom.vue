@@ -23,5 +23,5 @@
 	<!-- Add a book shelf -->
 	<BookShelf position="2 32 -2.8" rotation="0 180 0" />
 	<!-- Add an exit portal -->
-	<ExitPortal position="0 32 -2.75" />
+	<ExitPortal position="0 32 -2.75" :open="true" />
 </template>

@@ -7,6 +7,7 @@
 	import TheWhiteRoom from "./rooms/TheWhiteRoom.vue";
 	import TheBlueRoom from "./rooms/TheBlueRoom.vue";
 	import TheGreenRoom from "./rooms/TheGreenRoom.vue";
+	import TheEndRoom from "./rooms/TheEndRoom.vue";
 	import Wand from "./objects/Wand.vue";
 
 	import "../aframe/simple-grab.js";
@@ -113,6 +114,7 @@
 
 			<!-- charge a texture -->
 			<img id="wood-texture" src="/assets/wooden-background.jpg" />
+			<img id="portal-texture" src="/assets/portalTexture.jpg" />
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
@@ -143,6 +145,7 @@
 			<TheWhiteRoom :lightColor="lightColor" />
 			<TheBlueRoom :lightColor="lightColor" />
 			<TheGreenRoom :lightColor="lightColor" />
+			<TheEndRoom :lightColor="lightColor" />
 		</template>
 
 		<TheCameraRig />
