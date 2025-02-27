@@ -13,6 +13,14 @@
 
 	const props = defineProps({
 		lightColor: { type: String, default: "white" },
+		candlesPositions: {
+			type: Array,
+			default: () => [
+				[0, 0, -0.4],
+				[0, 0, -0.4],
+				[0, 0, -0.4],
+			],
+		},
 	});
 </script>
 
@@ -28,5 +36,11 @@
 	<WizardTable position="0 24 -2.4" rotation="0 180 0" />
 
 	<!-- Add a candle -->
-	<Candle class="slave" position="0 24.4 -0.4" rotation="0 180 0" :color="lightColor" />
+	<Candle
+		v-for="(position, index) in props.candlesPositions"
+		:key="index"
+		:class="'candle-' + index"
+		:position="`${position[0]} ${position[1] + 24} ${position[2]}`"
+		rotation="0 180 0"
+		:color="lightColor" />
 </template>

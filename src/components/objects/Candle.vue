@@ -10,13 +10,18 @@
 		classToLightUp: { type: String, default: "" },
 	});
 
+	console.log("Candle", props.position);
+
 	const isLightUp = ref(false);
 	const canLightUp = ref(props.canLightUp);
+
+	const emit = defineEmits(["lightUp"]);
 
 	const lightCandle = () => {
 		canLightUp.value = true;
 		isLightUp.value = true;
 		if (props.classToLightUp) {
+			emit("lightUp");
 			lightUpDependent();
 		}
 	};

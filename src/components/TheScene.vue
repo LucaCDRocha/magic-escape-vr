@@ -27,6 +27,12 @@
 
 	const lightColor = ref("white");
 
+	const candlesPositions = [
+		[0, 0, -0.4],
+		[1, 0, -0.4],
+		[-1, 0, -0.4],
+	];
+
 	const grab = ref(false);
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
@@ -149,10 +155,10 @@
 			<Wand :lightColor="lightColor" @grab="handleGrab" />
 
 			<TheStartRoom :lightColor="lightColor" />
-			<TheRedRoom :lightColor="lightColor" />
-			<TheWhiteRoom :lightColor="lightColor" />
-			<TheBlueRoom :lightColor="lightColor" />
-			<TheGreenRoom :lightColor="lightColor" />
+			<TheRedRoom :lightColor="lightColor" :candlesPositions="candlesPositions" />
+			<TheWhiteRoom :lightColor="lightColor" :candlesPositions="candlesPositions" />
+			<TheBlueRoom :lightColor="lightColor" :candlesPositions="candlesPositions" />
+			<TheGreenRoom :lightColor="lightColor" :candlesPositions="candlesPositions" />
 			<TheEndRoom :lightColor="lightColor" />
 		</template>
 
