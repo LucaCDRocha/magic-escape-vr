@@ -24,10 +24,10 @@
 	});
 
 	const allAssetsLoaded = ref(false);
-
 	const lightColor = ref("white");
-
 	const grab = ref(false);
+	const keyDown = ref(false);
+
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
 		const rightHand = document.querySelector("#hand-right");
@@ -43,7 +43,7 @@
 	};
 
 	const changeLightColor = (color) => {
-		console.log("changeLightColor", color);
+		console.log("changeLightColor to ", color);
 		lightColor.value = color;
 	};
 
@@ -52,51 +52,46 @@
 		changeLightColor(color);
 	};
 
-	const keyDown = ref(false);
-	const handleLights = (event) => {
-		if (!grab.value) {
-			return;
-		}
-		if (event.key === "x") {
-			const magicWand = document?.querySelector("#magic-wand-container");
-			const colors = document?.querySelector("#colors-choose");
-			const wandPosition = new THREE.Vector3();
-			const wandRotation = magicWand.getAttribute("rotation");
-			const wand = document.querySelector("#wand");
-			// get the global position of the wand
-			wand.querySelector("#sphere-wand").object3D.getWorldPosition(wandPosition);
-
-			if (wand) {
-				colors.setAttribute("position", wandPosition);
-				colors.setAttribute("rotation", wandRotation);
-			}
-		}
+	const handleLights = () => {
+		if (!grab.value) return;
+		const magicWand = document.querySelector("#magic-wand-container");
+		const wandPosition = new THREE.Vector3();
+		const wandRotation = magicWand.getAttribute("rotation");
+		
+		const wand = document.querySelector("#wand");
+		wand.querySelector("#sphere-wand").object3D.getWorldPosition(wandPosition);
+		
+		const colors = document.querySelector("#colors-choose");
+		colors.setAttribute("position", wandPosition);
+		colors.setAttribute("rotation", wandRotation);
 	};
 
-	window.addEventListener("mousedown", (event) => {
-		if (event.button === 2) {
-			keyDown.value = true;
-			handleLights({ key: "x" });
-		}
-	});
-	window.addEventListener("mouseup", (event) => {
-		if (event.button === 2) {
-			keyDown.value = false;
-			handleLights({ key: "x" });
-		}
-	});
+	const setupEventListeners = () => {
+		window.addEventListener("mousedown", (event) => {
+			if (event.button === 2) {
+				keyDown.value = true;
+				handleLights();
+			}
+		});
+		window.addEventListener("mouseup", (event) => {
+			if (event.button === 2) {
+				keyDown.value = false;
+				handleLights();
+			}
+		});
 
-	onMounted(() => {
 		const handRight = document.querySelector("#hand-right");
-		handRight.addEventListener("buttondown", (event) => {
+		handRight.addEventListener("buttondown", () => {
 			keyDown.value = true;
-			handleLights({ key: "x" });
+			handleLights();
 		});
-		handRight.addEventListener("buttonup", (event) => {
+		handRight.addEventListener("buttonup", () => {
 			keyDown.value = false;
-			handleLights({ key: "x" });
+			handleLights();
 		});
-	});
+	};
+
+	onMounted(setupEventListeners);
 </script>
 
 <template>

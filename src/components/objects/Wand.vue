@@ -13,7 +13,7 @@
 <template>
 	<a-box
 		id="magic-wand-container"
-		position="1 1.5 -0.5"
+		position="0 1.5 -0.5"
 		rotation="0 0 -90"
 		scale="0.008 0.008 0.008"
 		width="70"
