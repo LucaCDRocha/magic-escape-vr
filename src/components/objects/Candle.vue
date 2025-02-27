@@ -10,8 +10,6 @@
 		classToLightUp: { type: String, default: "" },
 	});
 
-	console.log("Candle", props.position);
-
 	const isLightUp = ref(false);
 	const canLightUp = ref(props.canLightUp);
 
@@ -55,13 +53,21 @@
 				radius="0.02"
 				:color="color"
 				shader="flat"
-				animation="property: radius; to: 0.05; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;"></a-sphere>
+				:animation="
+					isLightUp
+						? 'property: radius; to: 0.05; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;'
+						: ''
+				"></a-sphere>
 			<a-light
 				type="point"
 				:color="color"
 				intensity="0.5"
 				distance="5"
-				animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;"></a-light>
+				:animation="
+					isLightUp
+						? 'property: intensity; to: 1; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;'
+						: ''
+				"></a-light>
 		</a-entity>
 	</a-entity>
 </template>
