@@ -27,10 +27,10 @@
 		simple-grab
 		clickable
 		outline-on-event
-		teleport-camera-rig="y: 8; handleRotation: false"
+		teleport-camera-rig="y: 24; handleRotation: false"
 		@grab="handleGrab">
 		<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
-			<a-entity position="-25 0.5 0.3" id="sphere-wand">
+			<a-entity position="-25 0.5 0.3" id="sphere-wand" obb-collider>
 				<a-sphere
 					radius="0.5"
 					:color="lightColor"

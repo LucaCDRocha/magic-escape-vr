@@ -7,7 +7,5 @@
 
 <template>
 	<!-- Add a book shelf -->
-	<a-entity gltf-model="#book-shelf" :position="position" :rotation="rotation" scale="0.6 0.6 0.6">
-		<a-entity position="0 0 0"> </a-entity>
-	</a-entity>
+	<a-entity gltf-model="#book-shelf" :position="position" :rotation="rotation" scale="0.6 0.6 0.6"> </a-entity>
 </template>
