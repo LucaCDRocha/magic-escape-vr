@@ -28,6 +28,5 @@
 	<WizardTable position="0 24 -2.4" rotation="0 180 0" />
 
 	<!-- Add a candle -->
-	<Candle position="0 24.4 -0.4" classToLightUp="slave" rotation="0 180 0" :color="'orange'" :canLightUp="true" />
-	<Candle class="slave" position="0.5 24.4 -0.4" rotation="0 180 0" :color="'red'" />
+	<Candle class="slave" position="0 24.4 -0.4" rotation="0 180 0" :color="lightColor" />
 </template>

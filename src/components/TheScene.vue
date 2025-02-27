@@ -105,7 +105,7 @@
 		outline="color:red;"
 		stats
 		simple-grab
-		obb-collider="showColliders: true"
+		obb-collider="showColliders: false"
 		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
 		<a-assets @loaded="allAssetsLoaded = true">
 			<a-asset-item id="magic-wand" src="assets/objects/magic_wand.glb"></a-asset-item>
@@ -118,6 +118,7 @@
 			<a-asset-item id="round-table" src="assets/objects/table.glb"></a-asset-item>
 			<a-asset-item id="wizard-table" src="assets/objects/wizard_table.glb"></a-asset-item>
 			<a-asset-item id="candle" src="assets/objects/lowpoly_candle.glb"></a-asset-item>
+			<a-asset-item id="xylophone" src="assets/objects/kids_xylophone.glb"></a-asset-item>
 
 			<!-- charge a texture -->
 			<img id="wood-texture" src="/assets/textures/wooden-background.jpg" />
