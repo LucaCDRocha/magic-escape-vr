@@ -16,7 +16,6 @@
 	const lightCandle = () => {
 		canLightUp.value = true;
 		isLightUp.value = true;
-		console.log(42);
 		if (props.classToLightUp) {
 			lightUpDependent();
 		}
@@ -24,7 +23,6 @@
 
 	const lightUpDependent = () => {
 		document.querySelectorAll(`.${props.classToLightUp}`).forEach((el) => {
-			console.log("lightUpDependent", el);
 			el.emit("click");
 		});
 	};
