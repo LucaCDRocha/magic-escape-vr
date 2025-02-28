@@ -2,15 +2,23 @@
 	import { ref } from "vue";
 
 	import BaseRoom from "./BaseRoom.vue";
+
+	import BookOpen from "../objects/BookOpen.vue";
 	import BookShelf from "../objects/BookShelf.vue";
+	import Candle from "../objects/Candle.vue";
 	import CandleLantern from "../objects/CandleLantern.vue";
 	import CeilLantern from "../objects/CeilLantern.vue";
-	import Candle from "../objects/Candle.vue";
+	import ExitPortal from "../objects/ExitPortal.vue";
+	import RectangleTable from "../objects/RectangleTable.vue";
+	import RectangleTableChairs from "../objects/RectangleTableChairs.vue";
+	import RoundTable from "../objects/RoundTable.vue";
+	import WizardTable from "../objects/WizardTable.vue";
+	import Xylophone from "../objects/Xylophone.vue";
 
 	const candlesPositions = ref([
 		[0, 0.1, -0.4],
-		[1, 0.1, -0.4],
-		[-1, 0.1, -0.4],
+		[1.5, 1.01, -2.75],
+		[-2.2, 1, 1.7],
 	]);
 
 	const props = defineProps({
@@ -29,9 +37,10 @@
 	<!-- Add a ceiling light -->
 	<CeilLantern :position="`0 ${y + 2.15} 0`" :color="lightColor" />
 	<!-- Add a candle lantern -->
-	<CandleLantern :position="`-2.5 ${y + 0.04} -2.5`" :color="lightColor" />
+	<CandleLantern :position="`2.5 ${y + 0.04} 2.5`" :color="lightColor" />
 	<!-- Add a book shelf -->
 	<BookShelf :position="`2 ${y} -2.8`" rotation="0 180 0" />
+	<BookShelf :position="`-2 ${y} -2.8`" rotation="0 180 0" />
 
 	<!-- Add a candle -->
 	<template v-if="roomColor === 'green'">
@@ -54,4 +63,10 @@
 			rotation="0 180 0"
 			:color="lightColor" />
 	</template>
+
+	<!-- add a round table -->
+	<RoundTable :position="`-2 ${y} 2`" />
+
+	<!-- add a book open -->
+	<BookOpen :position="`-2.1 ${y + 0.99} 2.3`" rotation="0 -135 0" />
 </template>

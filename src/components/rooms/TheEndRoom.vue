@@ -5,10 +5,12 @@
 	const props = defineProps({
 		lightColor: { type: String, default: "white" },
 	});
+
+	const y = 40;
 </script>
 
 <template>
-	<BaseRoom :position="[0, 40, 0]" :size="4" :lightColor="lightColor" />
+	<BaseRoom :position="[0, y, 0]" :size="4" :lightColor="lightColor" />
 	<!-- Add a ceiling light -->
-	<CeilLantern position="0 42.15 0" :color="lightColor" />
+	<CeilLantern :position="`0 ${y + 2.15} 0`" :color="lightColor" />
 </template>

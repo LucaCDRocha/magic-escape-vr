@@ -5,10 +5,12 @@
 	const props = defineProps({
 		lightColor: { type: String, default: "white" },
 	});
+
+	const y = 32;
 </script>
 
 <template>
-	<TheRoom :y="32" :lightColor="lightColor" roomColor="white" />
+	<TheRoom :y="y" :lightColor="lightColor" roomColor="white" />
 	<!-- Add an exit portal -->
 	<ExitPortal position="0 32 -2.75" :open="true" />
 </template>

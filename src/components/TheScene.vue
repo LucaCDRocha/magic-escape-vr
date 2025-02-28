@@ -114,6 +114,7 @@
 			<a-asset-item id="wizard-table" src="assets/objects/wizard_table.glb"></a-asset-item>
 			<a-asset-item id="candle" src="assets/objects/lowpoly_candle.glb"></a-asset-item>
 			<a-asset-item id="xylophone" src="assets/objects/kids_xylophone.glb"></a-asset-item>
+			<a-asset-item id="book-open" src="assets/objects/book_open.glb"></a-asset-item>
 
 			<!-- charge a texture -->
 			<img id="wood-texture" src="/assets/textures/wooden-background.jpg" />
@@ -121,7 +122,7 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="2"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="1"></a-light>
 
 			<a-entity id="colors-choose" position="0 0 0">
 				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">

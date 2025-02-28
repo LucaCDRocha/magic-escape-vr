@@ -7,6 +7,7 @@
 		lightColor: { type: String, default: "white" },
 	});
 
+	const y = 16;
 	const nbOfCandles = 3;
 	const nbCandlesLit = ref(0);
 	const allCandlesLit = ref(false);
@@ -27,5 +28,5 @@
 </script>
 
 <template>
-	<TheRoom :y="16" :lightColor="lightColor" roomColor="green" @lightUp="handleLightUp()" />
+	<TheRoom :y="y" :lightColor="lightColor" roomColor="green" @lightUp="handleLightUp()" />
 </template>
