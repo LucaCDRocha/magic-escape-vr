@@ -35,5 +35,5 @@
 	<TheRoom :y="y" :lightColor="lightColor" roomColor="red" />
 
 	<!-- Add a xylophone -->
-	<Xylophone :position="`-1.75 ${y + 1} 1.75`" rotation="0 -60 0" @playNote="playNote($event)" />
+	<Xylophone :position="`-1.73 ${y + 1} 1.76`" rotation="0 -57 0" @playNote="playNote($event)" />
 </template>
