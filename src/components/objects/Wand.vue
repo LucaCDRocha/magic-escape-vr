@@ -92,7 +92,6 @@
 		depth="3"
 		color="blue"
 		opacity="0"
-		class="grab-hitbox"
 		simple-grab
 		clickable
 		outline-on-event
