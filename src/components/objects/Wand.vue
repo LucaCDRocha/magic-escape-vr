@@ -12,6 +12,7 @@
 
 	const keyDown = ref(false);
 	const isGrabbed = ref(false);
+	const isVR = document.querySelector("a-scene").is("vr-mode");
 
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
@@ -127,7 +128,7 @@
 					}`"
 					:color="color"
 					shader="flat"
-					emit-when-near="target: #sphere-wand; distance:0.03;"
+					:emit-when-near="`target: #sphere-wand; distance: ${isVR ? '0.02' : '0.03'}`"
 					:teleport-camera-rig="'y: ' + (index + 1) * 8 + '; handleRotation: false'"
 					@click="selectColor(color)"></a-sphere>
 			</template>
