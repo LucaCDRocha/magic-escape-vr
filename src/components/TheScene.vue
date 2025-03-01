@@ -25,73 +25,12 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
-	const grab = ref(false);
-	const keyDown = ref(false);
-
-	const handleGrab = () => {
-		const magicWand = document.querySelector("#wand");
-		const rightHand = document.querySelector("#hand-right");
-		if (magicWand) {
-			magicWand.setAttribute("rotation", "0 -90 0");
-			magicWand.setAttribute("position", "-1 0 -25");
-			grab.value = !grab.value;
-			changeLightColor("blue");
-		}
-		if (rightHand) {
-			rightHand.setAttribute("raycaster", "showLine: false");
-		}
-	};
 
 	const changeLightColor = (color) => {
 		console.log("changeLightColor to ", color);
 		lightColor.value = color;
 	};
 
-	const selectColor = (color) => {
-		keyDown.value = false;
-		changeLightColor(color);
-	};
-
-	const handleLights = () => {
-		if (!grab.value) return;
-		const magicWand = document.querySelector("#magic-wand-container");
-		const wandPosition = new THREE.Vector3();
-		const wandRotation = magicWand.getAttribute("rotation");
-		
-		const wand = document.querySelector("#wand");
-		wand.querySelector("#sphere-wand").object3D.getWorldPosition(wandPosition);
-		
-		const colors = document.querySelector("#colors-choose");
-		colors.setAttribute("position", wandPosition);
-		colors.setAttribute("rotation", wandRotation);
-	};
-
-	const setupEventListeners = () => {
-		window.addEventListener("mousedown", (event) => {
-			if (event.button === 2) {
-				keyDown.value = true;
-				handleLights();
-			}
-		});
-		window.addEventListener("mouseup", (event) => {
-			if (event.button === 2) {
-				keyDown.value = false;
-				handleLights();
-			}
-		});
-
-		const handRight = document.querySelector("#hand-right");
-		handRight.addEventListener("buttondown", () => {
-			keyDown.value = true;
-			handleLights();
-		});
-		handRight.addEventListener("buttonup", () => {
-			keyDown.value = false;
-			handleLights();
-		});
-	};
-
-	onMounted(setupEventListeners);
 </script>
 
 <template>
@@ -124,25 +63,7 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="1"></a-light>
 
-			<a-entity id="colors-choose" position="0 0 0">
-				<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
-					<template v-for="(color, index) in ['red', 'green', 'blue', 'white']" :key="color">
-						<a-sphere
-							v-if="lightColor !== color"
-							:radius="0.02"
-							:position="`0 ${index === 0 ? '0.06' : index === 1 ? '-0.06' : '0'} ${
-								index === 2 ? '0.06' : index === 3 ? '-0.06' : '0'
-							}`"
-							:color="color"
-							shader="flat"
-							emit-when-near="target: #sphere-wand; distance:0.03;"
-							:teleport-camera-rig="'y: ' + (index + 1) * 8 + '; handleRotation: false'"
-							@click="selectColor(color)"></a-sphere>
-					</template>
-				</a-entity>
-			</a-entity>
-
-			<Wand :lightColor="lightColor" @grab="handleGrab" />
+			<Wand position="0 1.5 -0.5" rotation="0 0 -90" :lightColor="lightColor" @colorChange="changeLightColor" />
 
 			<TheStartRoom :lightColor="lightColor" />
 			<TheRedRoom :lightColor="lightColor" />
