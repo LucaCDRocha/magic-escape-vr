@@ -31,5 +31,5 @@
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" roomColor="green" @lightUp="handleLightUp()" />
+	<TheRoom :y="y" :lightColor="lightColor" roomColor="green" @lightUp="handleLightUp()" lvlUpColor="red" />
 </template>

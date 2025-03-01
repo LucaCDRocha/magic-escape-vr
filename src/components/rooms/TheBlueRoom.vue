@@ -16,7 +16,7 @@
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" roomColor="blue" />
+	<TheRoom :y="y" :lightColor="lightColor" roomColor="blue" lvlUpColor="green" />
 
 	<!-- Add a wizard table -->
 	<WizardTable :position="`0 ${y} -2.4`" rotation="0 180 0" />

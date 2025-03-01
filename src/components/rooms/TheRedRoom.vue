@@ -35,7 +35,7 @@
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" roomColor="red" />
+	<TheRoom :y="y" :lightColor="lightColor" roomColor="red" lvlUpColor="white" />
 
 	<!-- Add a xylophone -->
 	<Xylophone :position="`-1.73 ${y + 1} 1.76`" rotation="0 -57 0" @playNote="playNote($event)" />

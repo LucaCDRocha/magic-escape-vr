@@ -25,6 +25,7 @@
 		lightColor: { type: String, default: "white" },
 		y: { type: Number, default: 0 },
 		roomColor: { type: String, default: "white" },
+		lvlUpColor: { type: String, default: "white" },
 	});
 
 	console.log(props.roomColor);
@@ -33,6 +34,24 @@
 </script>
 
 <template>
+	<a-entity
+		:position="`0 ${y + 3} 0`"
+		:animation="`property: position; to: 0 ${y + 1.5} 0; dir: alternate; dur: 2000; loop: true`">
+		<a-sphere
+			radius="0.05"
+			:color="lvlUpColor"
+			shader="flat"
+			animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true"></a-sphere>
+		<a-light
+			type="point"
+			radius="0.05"
+			:color="lvlUpColor"
+			intensity="1"
+			castShadow="true"
+			animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
+		</a-light>
+	</a-entity>
+
 	<BaseRoom :position="[0, y, 0]" :size="6" :lightColor="lightColor" />
 	<!-- Add a ceiling light -->
 	<CeilLantern :position="`0 ${y + 2.15} 0`" :color="lightColor" />
