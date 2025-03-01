@@ -11,6 +11,9 @@
 	const emit = defineEmits(["levelUp"]);
 
 	const y = 24;
+	const roomColor = "red";
+	const lvlUpColor = "white";
+
 	const rightSequence = ["f", "a", "d", "e"];
 	const currentSequence = ref([]);
 	const isSequenceFinish = ref(false);
@@ -29,13 +32,18 @@
 		if (currentSequence.value.join("") === rightSequence.join("")) {
 			isSequenceFinish.value = true;
 			console.log("Sequence is correct!");
-			emit("levelUp");
 		}
 	};
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" roomColor="red" lvlUpColor="white" />
+	<TheRoom
+		:y="y"
+		:lightColor="lightColor"
+		:roomColor="roomColor"
+		:lvlUpColor="lvlUpColor"
+		:isSuccess="isSequenceFinish"
+		@levelUp="$emit('levelUp')" />
 
 	<!-- Add a xylophone -->
 	<Xylophone :position="`-1.73 ${y + 1} 1.76`" rotation="0 -57 0" @playNote="playNote($event)" />

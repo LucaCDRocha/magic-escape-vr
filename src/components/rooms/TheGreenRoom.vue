@@ -8,6 +8,9 @@
 	});
 
 	const y = 16;
+	const roomColor = "green";
+	const lvlUpColor = "red";
+
 	const nbOfCandles = 3;
 	const nbCandlesLit = ref(0);
 	const allCandlesLit = ref(false);
@@ -25,11 +28,17 @@
 		if (nbCandlesLit.value === nbOfCandles) {
 			allCandlesLit.value = true;
 			console.log("All candles are lit!");
-			emit("levelUp");
 		}
 	};
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" roomColor="green" @lightUp="handleLightUp()" lvlUpColor="red" />
+	<TheRoom
+		:y="y"
+		:lightColor="lightColor"
+		:lvlUpColor="lvlUpColor"
+		:roomColor="roomColor"
+		:isSuccess="allCandlesLit"
+		@lightUp="handleLightUp()"
+		@levelUp="$emit('levelUp')" />
 </template>

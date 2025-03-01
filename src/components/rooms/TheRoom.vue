@@ -1,5 +1,5 @@
 <script setup>
-	import { ref } from "vue";
+	import { ref, watch, onMounted } from "vue";
 
 	import BaseRoom from "./BaseRoom.vue";
 
@@ -15,40 +15,65 @@
 	import WizardTable from "../objects/WizardTable.vue";
 	import Xylophone from "../objects/Xylophone.vue";
 
+	import "../../aframe/clickable.js";
+
+	const props = defineProps({
+		lightColor: { type: String, default: "black" },
+		y: { type: Number, default: 0 },
+		roomColor: { type: String, default: "black" },
+		lvlUpColor: { type: String, default: "black" },
+		isSuccess: { type: Boolean, default: false },
+	});
+
+	const emit = defineEmits(["lightUp", "levelUp"]);
+
 	const candlesPositions = ref([
 		[0, 0.1, -0.4],
 		[1.5, 1.01, -2.75],
 		[-2.2, 1, 1.7],
 	]);
+	const levelUpElement = ref(null);
 
-	const props = defineProps({
-		lightColor: { type: String, default: "white" },
-		y: { type: Number, default: 0 },
-		roomColor: { type: String, default: "white" },
-		lvlUpColor: { type: String, default: "white" },
+	const levelUp = () => {
+		console.log("Level up!");
+		levelUpElement.value.setAttribute(
+			"animation",
+			`property: position; to: 0 ${props.y + 3} 0; dir: alternate; dur: 100; loop: false`
+		);
+		setTimeout(() => {
+			levelUpElement.value.setAttribute("visible", false);
+		}, 100);
+		emit("levelUp");
+	};
+
+	watch(
+		() => props.isSuccess,
+		(newVal) => {
+			if (newVal) {
+				levelUpElement.value.setAttribute(
+					"animation",
+					`property: position; to: 0 ${props.y + 1.5} 0; dir: alternate; dur: 5000; loop: false`
+				);
+				levelUpElement.value.setAttribute("visible", true);
+			}
+		}
+	);
+
+	onMounted(() => {
+		levelUpElement.value = document.getElementById(`level-up-${props.roomColor}`);
 	});
-
-	console.log(props.roomColor);
-
-	const emits = defineEmits(["lightUp"]);
 </script>
 
 <template>
-	<a-entity
-		:position="`0 ${y + 3} 0`"
-		:animation="`property: position; to: 0 ${y + 1.5} 0; dir: alternate; dur: 2000; loop: true`">
+	<a-entity v-if="lvlUpColor !== 'black'" :id="`level-up-${roomColor}`" :position="`0 ${y + 3} 0`" visible="false">
 		<a-sphere
 			radius="0.05"
 			:color="lvlUpColor"
 			shader="flat"
-			animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true"></a-sphere>
-		<a-light
-			type="point"
-			radius="0.05"
-			:color="lvlUpColor"
-			intensity="1"
-			animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
-		</a-light>
+			clickable
+			:emit-when-near="`target: #sphere-wand; distance: 0.05`"
+			@click="levelUp()"></a-sphere>
+		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="1"> </a-light>
 	</a-entity>
 
 	<BaseRoom :position="[0, y, 0]" :size="6" :lightColor="lightColor" />
