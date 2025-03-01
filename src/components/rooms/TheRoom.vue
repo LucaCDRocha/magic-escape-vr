@@ -47,7 +47,6 @@
 			radius="0.05"
 			:color="lvlUpColor"
 			intensity="1"
-			castShadow="true"
 			animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
 		</a-light>
 	</a-entity>
