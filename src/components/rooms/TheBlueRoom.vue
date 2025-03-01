@@ -7,6 +7,12 @@
 	});
 
 	const y = 8;
+
+	const emit = defineEmits(["levelUp"]);
+
+	setTimeout(() => {
+		emit("levelUp");
+	}, 1000);
 </script>
 
 <template>

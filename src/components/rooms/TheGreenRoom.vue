@@ -12,6 +12,8 @@
 	const nbCandlesLit = ref(0);
 	const allCandlesLit = ref(false);
 
+	const emit = defineEmits(["levelUp"]);
+
 	const handleLightUp = () => {
 		if (allCandlesLit.value) {
 			return;
@@ -23,6 +25,7 @@
 		if (nbCandlesLit.value === nbOfCandles) {
 			allCandlesLit.value = true;
 			console.log("All candles are lit!");
+			emit("levelUp");
 		}
 	};
 </script>

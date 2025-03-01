@@ -25,12 +25,17 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
+	const wandLevel = ref(0);
 
 	const changeLightColor = (color) => {
 		console.log("changeLightColor to ", color);
 		lightColor.value = color;
 	};
 
+	const handleLevelUp = () => {
+		wandLevel.value++;
+		console.log("Wand level up to ", wandLevel.value);
+	};
 </script>
 
 <template>
@@ -63,13 +68,18 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="1"></a-light>
 
-			<Wand position="0 1.5 -0.5" rotation="0 0 -90" :lvl="0" :lightColor="lightColor" @colorChange="changeLightColor" />
+			<Wand
+				position="0 1.5 -0.5"
+				rotation="0 0 -90"
+				:lvl="wandLevel"
+				:lightColor="lightColor"
+				@colorChange="changeLightColor" />
 
 			<TheStartRoom :lightColor="lightColor" />
-			<TheRedRoom :lightColor="lightColor" />
+			<TheRedRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
 			<TheWhiteRoom :lightColor="lightColor" />
-			<TheBlueRoom :lightColor="lightColor" />
-			<TheGreenRoom :lightColor="lightColor" />
+			<TheBlueRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
+			<TheGreenRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
 			<TheEndRoom :lightColor="lightColor" />
 		</template>
 

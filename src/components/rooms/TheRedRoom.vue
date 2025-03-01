@@ -8,6 +8,8 @@
 		lightColor: { type: String, default: "white" },
 	});
 
+	const emit = defineEmits(["levelUp"]);
+
 	const y = 24;
 	const rightSequence = ["f", "a", "d", "e"];
 	const currentSequence = ref([]);
@@ -27,6 +29,7 @@
 		if (currentSequence.value.join("") === rightSequence.join("")) {
 			isSequenceFinish.value = true;
 			console.log("Sequence is correct!");
+			emit("levelUp");
 		}
 	};
 </script>
