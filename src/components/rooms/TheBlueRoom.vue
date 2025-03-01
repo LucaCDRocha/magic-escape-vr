@@ -6,7 +6,7 @@
 		lightColor: { type: String, default: "white" },
 	});
 
-	const y = 24;
+	const y = 8;
 </script>
 
 <template>

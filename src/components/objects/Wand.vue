@@ -95,7 +95,7 @@
 		simple-grab
 		clickable
 		outline-on-event
-		teleport-camera-rig="y: 24; handleRotation: false"
+		teleport-camera-rig="y: 8; handleRotation: false"
 		@grab="handleGrab">
 		<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
 			<a-entity position="-25 0.5 0.3" id="sphere-wand" obb-collider>
@@ -118,9 +118,9 @@
 
 	<a-entity id="colors-choose" position="0 0 0">
 		<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">
-			<template v-for="(color, index) in ['red', 'green', 'blue', 'white']" :key="color">
+			<template v-for="(color, index) in ['blue', 'green', 'red', 'white']" :key="color">
 				<a-sphere
-					v-if="lightColor !== color"
+					v-if="lightColor !== color && index <= lvl"
 					:radius="0.02"
 					:position="`0 ${index === 0 ? '0.06' : index === 1 ? '-0.06' : '0'} ${
 						index === 2 ? '0.06' : index === 3 ? '-0.06' : '0'

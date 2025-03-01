@@ -63,7 +63,7 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="1"></a-light>
 
-			<Wand position="0 1.5 -0.5" rotation="0 0 -90" :lightColor="lightColor" @colorChange="changeLightColor" />
+			<Wand position="0 1.5 -0.5" rotation="0 0 -90" :lvl="0" :lightColor="lightColor" @colorChange="changeLightColor" />
 
 			<TheStartRoom :lightColor="lightColor" />
 			<TheRedRoom :lightColor="lightColor" />

@@ -8,7 +8,7 @@
 		lightColor: { type: String, default: "white" },
 	});
 
-	const y = 8;
+	const y = 24;
 	const rightSequence = ["f", "a", "d", "e"];
 	const currentSequence = ref([]);
 	const isSequenceFinish = ref(false);
