@@ -21,7 +21,7 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
-	const wandLevel = ref(3);
+	const wandLevel = ref(0);
 
 	const changeLightColor = (color) => {
 		console.log("changeLightColor to ", color);

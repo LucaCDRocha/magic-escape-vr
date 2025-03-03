@@ -35,10 +35,8 @@
 
 	const levelUp = () => {
 		console.log("Level up!");
-		levelUpElement.value.setAttribute(
-			"animation",
-			`property: position; to: 0 ${props.y + 3} 0; dir: alternate; dur: 100; loop: false`
-		);
+		levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 3} 0; dur: 100;`);
+		levelUpElement.value.querySelector("a-light").setAttribute("animation", "property: intensity; to: 0; dur: 100;");
 		setTimeout(() => {
 			levelUpElement.value.setAttribute("visible", false);
 		}, 100);
@@ -49,10 +47,10 @@
 		() => props.isSuccess,
 		(newVal) => {
 			if (newVal) {
-				levelUpElement.value.setAttribute(
-					"animation",
-					`property: position; to: 0 ${props.y + 1.5} 0; dir: alternate; dur: 5000; loop: false`
-				);
+				levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 1.5} 0; dur: 5000;`);
+				levelUpElement.value
+					.querySelector("a-light")
+					.setAttribute("animation", "property: intensity; to: 1; dur: 5000;");
 				levelUpElement.value.setAttribute("visible", true);
 			}
 		}
@@ -72,7 +70,7 @@
 			clickable
 			:emit-when-near="`target: #sphere-wand; distance: 0.05`"
 			@click="levelUp()"></a-sphere>
-		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="1"> </a-light>
+		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="0"> </a-light>
 	</a-entity>
 
 	<BaseRoom :position="[0, y, 0]" :size="6" />
