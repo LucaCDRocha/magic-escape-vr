@@ -19,11 +19,6 @@
 	import "../aframe/listen-to.js";
 	import "../aframe/look-at-horizon.js"
 
-	defineProps({
-		scale: Number,
-		overlaySelector: String,
-	});
-
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
 	const wandLevel = ref(0);
