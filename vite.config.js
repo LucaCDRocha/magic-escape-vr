@@ -11,7 +11,7 @@ const fullReloadPlugin = {
 
 export default defineConfig(({ command, mode }) => {
   const config = {
-    base: "/magic-escape-vr/",
+    base: "/",
     plugins: [
       basicSsl(),
       vue({
