@@ -49,8 +49,6 @@
 			<a-asset-item id="candle-lantern" src="assets/objects/candle_lantern.glb"></a-asset-item>
 			<a-asset-item id="portal-frame" src="assets/objects/portal_frame.glb"></a-asset-item>
 			<a-asset-item id="book-shelf" src="assets/objects/book_shelf.glb"></a-asset-item>
-			<a-asset-item id="rectangle-table" src="assets/objects/mahogany_table.glb"></a-asset-item>
-			<a-asset-item id="rectangle-table-chairs" src="assets/objects/table_and_chairs.glb"></a-asset-item>
 			<a-asset-item id="round-table" src="assets/objects/table.glb"></a-asset-item>
 			<a-asset-item id="wizard-table" src="assets/objects/wizard_table.glb"></a-asset-item>
 			<a-asset-item id="candle" src="assets/objects/lowpoly_candle.glb"></a-asset-item>

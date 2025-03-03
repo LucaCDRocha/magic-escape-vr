@@ -9,8 +9,6 @@
 	import CandleLantern from "../objects/CandleLantern.vue";
 	import CeilLantern from "../objects/CeilLantern.vue";
 	import ExitPortal from "../objects/ExitPortal.vue";
-	import RectangleTable from "../objects/RectangleTable.vue";
-	import RectangleTableChairs from "../objects/RectangleTableChairs.vue";
 	import RoundTable from "../objects/RoundTable.vue";
 	import WizardTable from "../objects/WizardTable.vue";
 	import BlackCat from "../objects/BlackCat.vue";
@@ -30,6 +28,7 @@
 	const candlesPositions = ref([
 		[2.1, 1, 0.6],
 		[-1.5, 1.01, -2.75],
+		[2.5, 1.37, -2.75],
 		[-2.2, 1, 1.7],
 	]);
 	const levelUpElement = ref(null);

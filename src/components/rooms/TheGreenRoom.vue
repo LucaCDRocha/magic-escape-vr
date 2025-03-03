@@ -11,7 +11,7 @@
 	const roomColor = "green";
 	const lvlUpColor = "red";
 
-	const nbOfCandles = 3;
+	const nbOfCandles = 4;
 	const nbCandlesLit = ref(0);
 	const allCandlesLit = ref(false);
 
