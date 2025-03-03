@@ -6,10 +6,17 @@
 
 	const emit = defineEmits(["playNote"]);
 
+	let audioCtx;
+
 	const playNote = (e, tone) => {
 		if (e === "sphere-wand") {
-			// Create an audio context
-			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+			// Close the previous audio context if it exists
+			if (audioCtx) {
+				audioCtx.close();
+			}
+
+			// Create a new audio context
+			audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 			// Create an oscillator
 			const oscillator = audioCtx.createOscillator();
@@ -58,6 +65,12 @@
 
 			// Stop the oscillator after 1 second
 			oscillator.stop(audioCtx.currentTime + 1);
+
+			// Handle the ended event to clean up resources
+			oscillator.onended = () => {
+				audioCtx.close();
+				audioCtx = null;
+			};
 
 			emit("playNote", tone);
 		}

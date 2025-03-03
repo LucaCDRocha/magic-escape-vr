@@ -90,7 +90,12 @@
 		simple-grab
 		teleport-camera-rig="y: 8; handleRotation: false"
 		@grab="handleGrab">
-		<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0" clickable>
+		<a-entity
+			id="wand"
+			gltf-model="#magic-wand"
+			rotation="90 0 0"
+			position="-9 0 0"
+			:clickable="isGrabbed ? null : ''">
 			<a-entity position="-25 0.5 0.3" id="sphere-wand" obb-collider>
 				<a-sphere
 					radius="0.5"

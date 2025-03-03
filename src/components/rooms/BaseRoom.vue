@@ -2,7 +2,6 @@
 	const props = defineProps({
 		position: { type: Array, required: true },
 		size: { type: Number, required: true },
-		lightColor: { type: String, default: "white" },
 	});
 </script>
 

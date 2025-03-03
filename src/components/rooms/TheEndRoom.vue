@@ -10,7 +10,7 @@
 </script>
 
 <template>
-	<BaseRoom :position="[0, y, 0]" :size="4" :lightColor="lightColor" />
+	<BaseRoom :position="[0, y, 0]" :size="4" />
 	<!-- Add a ceiling light -->
 	<CeilLantern :position="`0 ${y + 2.15} 0`" :color="lightColor" />
 </template>

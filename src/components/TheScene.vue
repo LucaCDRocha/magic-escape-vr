@@ -63,7 +63,7 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="10"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="0.5"></a-light>
 
 			<Wand
 				position="0 1.5 -0.5"

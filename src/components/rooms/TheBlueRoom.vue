@@ -2,7 +2,6 @@
 	import { ref } from "vue";
 
 	import TheRoom from "./TheRoom.vue";
-	import WizardTable from "../objects/WizardTable.vue";
 
 	const props = defineProps({
 		lightColor: { type: String, default: "white" },
@@ -29,10 +28,5 @@
 		:isSuccess="isSuccess"
 		@levelUp="$emit('levelUp')" />
 
-	<a-text
-		:position="`-1.73 ${y + 1} 1.76`"
-		rotation="-90 123 0"
-		align="center"
-		color="orange"
-		value="f a d e" />
+	<a-text :position="`-1.73 ${y + 1} 1.76`" rotation="-90 123 0" align="center" color="orange" value="f a d e" />
 </template>
