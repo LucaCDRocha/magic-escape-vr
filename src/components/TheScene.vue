@@ -24,7 +24,7 @@
 	const wandLevel = ref(0);
 
 	const changeLightColor = (color) => {
-		console.log("changeLightColor to ", color);
+		console.log("changeLightColor to", color);
 		lightColor.value = color;
 	};
 
