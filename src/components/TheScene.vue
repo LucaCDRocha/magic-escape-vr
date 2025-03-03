@@ -21,7 +21,7 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
-	const wandLevel = ref(0);
+	const wandLevel = ref(3);
 
 	const changeLightColor = (color) => {
 		console.log("changeLightColor to ", color);
@@ -38,6 +38,7 @@
 	<a-scene
 		background="color: black;"
 		stats
+		_bloom
 		simple-grab
 		obb-collider="showColliders: false"
 		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
