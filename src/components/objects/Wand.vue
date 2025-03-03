@@ -82,22 +82,15 @@
 </script>
 
 <template>
-	<a-box
+	<a-entity
 		id="magic-wand-container"
 		:position="position"
 		:rotation="rotation"
 		scale="0.008 0.008 0.008"
-		width="70"
-		height="2"
-		depth="3"
-		color="blue"
-		opacity="0"
 		simple-grab
-		clickable
-		outline-on-event
 		teleport-camera-rig="y: 8; handleRotation: false"
 		@grab="handleGrab">
-		<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0">
+		<a-entity id="wand" gltf-model="#magic-wand" rotation="90 0 0" position="-9 0 0" clickable>
 			<a-entity position="-25 0.5 0.3" id="sphere-wand" obb-collider>
 				<a-sphere
 					radius="0.5"
@@ -113,7 +106,7 @@
 				</a-light>
 			</a-entity>
 		</a-entity>
-	</a-box>
+	</a-entity>
 
 	<a-entity id="colors-choose" position="0 0 0">
 		<a-entity v-if="keyDown" position="0 0 0" rotation="0 90 0">

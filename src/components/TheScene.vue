@@ -37,7 +37,6 @@
 <template>
 	<a-scene
 		background="color: black;"
-		outline="color:red;"
 		stats
 		simple-grab
 		obb-collider="showColliders: false"
