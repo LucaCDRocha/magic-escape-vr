@@ -13,7 +13,7 @@
 	import RectangleTableChairs from "../objects/RectangleTableChairs.vue";
 	import RoundTable from "../objects/RoundTable.vue";
 	import WizardTable from "../objects/WizardTable.vue";
-	import Xylophone from "../objects/Xylophone.vue";
+	import BlackCat from "../objects/BlackCat.vue";
 
 	import "../../aframe/clickable.js";
 
@@ -28,8 +28,8 @@
 	const emit = defineEmits(["lightUp", "levelUp"]);
 
 	const candlesPositions = ref([
-		[0, 0.1, -0.4],
-		[1.5, 1.01, -2.75],
+		[2.1, 1, 0.6],
+		[-1.5, 1.01, -2.75],
 		[-2.2, 1, 1.7],
 	]);
 	const levelUpElement = ref(null);
@@ -84,6 +84,17 @@
 	<!-- Add a book shelf -->
 	<BookShelf :position="`2 ${y} -2.8`" rotation="0 180 0" />
 	<BookShelf :position="`-2 ${y} -2.8`" rotation="0 180 0" />
+	<!-- Add a wizard table -->
+	<WizardTable :position="`2.4 ${y} 0`" rotation="0 90 0" />
+	<!-- add a round table -->
+	<RoundTable :position="`-2 ${y} 2`" />
+	<!-- add a book open -->
+	<BookOpen :position="`-2.1 ${y + 0.99} 2.3`" rotation="0 -135 0" />
+	<!-- add a black cat -->
+	<BlackCat :position="`-2.5 ${y} 0`" />
+
+	<!-- Add an exit portal -->
+	<ExitPortal :position="`0 ${y} -2.75`" :open="roomColor === 'white' ? true : false" />
 
 	<!-- Add a candle -->
 	<template v-if="roomColor === 'green'">
@@ -106,10 +117,4 @@
 			rotation="0 180 0"
 			:color="lightColor" />
 	</template>
-
-	<!-- add a round table -->
-	<RoundTable :position="`-2 ${y} 2`" />
-
-	<!-- add a book open -->
-	<BookOpen :position="`-2.1 ${y + 0.99} 2.3`" rotation="0 -135 0" />
 </template>

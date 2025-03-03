@@ -6,6 +6,5 @@
 </script>
 
 <template>
-	<!-- Add a book shelf -->
 	<a-entity gltf-model="#book-open" :position="position" :rotation="rotation" scale="0.015 0.015 0.015"> </a-entity>
 </template>

@@ -6,7 +6,6 @@
 </script>
 
 <template>
-	<!-- Add a ceiling light -->
 	<a-entity gltf-model="#ceil-lantern" :position="position">
 		<a-entity position="0 0 0">
 			<a-sphere radius="0.07" :color="color" shader="flat"></a-sphere>

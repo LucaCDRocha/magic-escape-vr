@@ -9,7 +9,6 @@
 </script>
 
 <template>
-	<!-- Add a portal frame -->
 	<a-entity gltf-model="#portal-frame" :position="position" :rotation="rotation" scale="0.0063 0.0063 0.0063">
 		<PortalTeleporter
 			v-if="open"

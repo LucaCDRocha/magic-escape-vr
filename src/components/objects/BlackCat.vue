@@ -6,5 +6,5 @@
 </script>
 
 <template>
-	<a-entity gltf-model="#book-shelf" :position="position" :rotation="rotation" scale="0.6 0.6 0.6"> </a-entity>
+	<a-entity gltf-model="#black-cat" :position="position" :rotation="rotation" scale="0.5 0.5 0.5" look-at-horizon> </a-entity>
 </template>

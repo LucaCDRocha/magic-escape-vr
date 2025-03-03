@@ -17,6 +17,7 @@
 	import "../aframe/teleport-camera-rig.js";
 	import "../aframe/emit-when-near.js";
 	import "../aframe/listen-to.js";
+	import "../aframe/look-at-horizon.js"
 
 	defineProps({
 		scale: Number,
@@ -47,6 +48,7 @@
 		obb-collider="showColliders: false"
 		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
 		<a-assets @loaded="allAssetsLoaded = true">
+			<!-- charge all the objects -->
 			<a-asset-item id="magic-wand" src="assets/objects/magic_wand.glb"></a-asset-item>
 			<a-asset-item id="ceil-lantern" src="assets/objects/lantern.glb"></a-asset-item>
 			<a-asset-item id="candle-lantern" src="assets/objects/candle_lantern.glb"></a-asset-item>
@@ -59,6 +61,7 @@
 			<a-asset-item id="candle" src="assets/objects/lowpoly_candle.glb"></a-asset-item>
 			<a-asset-item id="xylophone" src="assets/objects/kids_xylophone.glb"></a-asset-item>
 			<a-asset-item id="book-open" src="assets/objects/book_open.glb"></a-asset-item>
+			<a-asset-item id="black-cat" src="assets/objects/black_cat.glb"></a-asset-item>
 
 			<!-- charge a texture -->
 			<img id="wood-texture" src="/assets/textures/wooden-background.jpg" />
@@ -66,7 +69,7 @@
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
-			<a-light type="ambient" :color="lightColor" intensity="1"></a-light>
+			<a-light type="ambient" :color="lightColor" intensity="10"></a-light>
 
 			<Wand
 				position="0 1.5 -0.5"
@@ -76,10 +79,10 @@
 				@colorChange="changeLightColor" />
 
 			<TheStartRoom :lightColor="lightColor" />
-			<TheRedRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
-			<TheWhiteRoom :lightColor="lightColor" />
 			<TheBlueRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
 			<TheGreenRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
+			<TheRedRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
+			<TheWhiteRoom :lightColor="lightColor" />
 			<TheEndRoom :lightColor="lightColor" />
 		</template>
 

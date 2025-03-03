@@ -29,9 +29,6 @@
 		:isSuccess="isSuccess"
 		@levelUp="$emit('levelUp')" />
 
-	<!-- Add a wizard table -->
-	<WizardTable :position="`0 ${y} -2.4`" rotation="0 180 0" />
-
 	<a-text
 		:position="`-1.73 ${y + 1} 1.76`"
 		rotation="-90 123 0"

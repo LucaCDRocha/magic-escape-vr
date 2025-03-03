@@ -7,7 +7,6 @@
 </script>
 
 <template>
-	<!-- Add a candle lantern -->
 	<a-entity gltf-model="#candle-lantern" :position="position" scale="0.004 0.004 0.004" :rotation="rotation">
 		<a-cylinder position="0 25 0" color="#3C1518" height="50" radius="10"></a-cylinder>
 		<a-entity position="0 50 0">
