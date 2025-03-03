@@ -37,7 +37,7 @@
 <template>
 	<a-scene
 		background="color: black;"
-		stats
+		_stats
 		_bloom
 		simple-grab
 		obb-collider="showColliders: false"
