@@ -49,25 +49,8 @@
 			:listen-to="`target: #master-${uniqid}; event: click; emit: lightCandle`"
 			@lightCandle="lightCandle()"
 			:visible="canLightUp ? isLightUp : false">
-			<a-sphere
-				radius="0.02"
-				:color="color"
-				shader="flat"
-				:animation="
-					isLightUp
-						? 'property: radius; to: 0.05; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;'
-						: ''
-				"></a-sphere>
-			<a-light
-				type="point"
-				:color="color"
-				intensity="0.5"
-				distance="5"
-				:animation="
-					isLightUp
-						? 'property: intensity; to: 1; dir: alternate; dur: 2000; loop: true; easing: easeInOutSine;'
-						: ''
-				"></a-light>
+			<a-sphere radius="0.05" :color="color" shader="flat"></a-sphere>
+			<a-light type="point" :color="color" intensity="0.5" distance="5"></a-light>
 		</a-entity>
 	</a-entity>
 </template>

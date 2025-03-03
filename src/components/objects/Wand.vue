@@ -104,7 +104,6 @@
 					:color="lightColor"
 					shader="flat"
 					animation="property: scale; to: 1.4 1.4 1.4; dir: alternate; dur: 2000; loop: true"></a-sphere>
-
 				<a-light
 					type="point"
 					radius="2"
