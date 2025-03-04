@@ -23,7 +23,7 @@
 		isSuccess: { type: Boolean, default: false },
 	});
 
-	const emit = defineEmits(["lightUp", "levelUp"]);
+	const emit = defineEmits(["lightUp", "levelUp", "end"]);
 
 	const candlesPositions = ref([
 		[2.1, 1, 0.6],
@@ -32,6 +32,8 @@
 		[-2.2, 1, 1.7],
 	]);
 	const levelUpElement = ref(null);
+
+	const soundSucced = ref(null);
 
 	const levelUp = () => {
 		console.log("Level up!");
@@ -47,11 +49,12 @@
 		() => props.isSuccess,
 		(newVal) => {
 			if (newVal) {
-				levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 1.5} 0; dur: 5000;`);
+				levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 1.5} 0; dur: 3000;`);
 				levelUpElement.value
 					.querySelector("a-light")
-					.setAttribute("animation", "property: intensity; to: 1; dur: 5000;");
+					.setAttribute("animation", "property: intensity; to: 1; dur: 3000;");
 				levelUpElement.value.setAttribute("visible", true);
+				soundSucced.value.components.sound.playSound();
 			}
 		}
 	);
@@ -70,7 +73,8 @@
 			clickable
 			:emit-when-near="`target: #sphere-wand; distance: 0.05`"
 			@click="levelUp()"></a-sphere>
-		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="0"> </a-light>
+		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="0"></a-light>
+		<a-sound ref="soundSucced" src="#success-1" volume="1"></a-sound>
 	</a-entity>
 
 	<BaseRoom :position="[0, y, 0]" :size="6" />
@@ -91,7 +95,7 @@
 	<BlackCat :position="`-2.5 ${y} 0`" />
 
 	<!-- Add an exit portal -->
-	<ExitPortal :position="`0 ${y} -2.75`" :open="roomColor === 'white' ? true : false" />
+	<ExitPortal :position="`0 ${y} -2.75`" :open="roomColor === 'white' ? true : false" @end="emit('end')" />
 
 	<!-- Add a candle -->
 	<template v-if="roomColor === 'green'">

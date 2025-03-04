@@ -17,11 +17,13 @@
 	import "../aframe/teleport-camera-rig.js";
 	import "../aframe/emit-when-near.js";
 	import "../aframe/listen-to.js";
-	import "../aframe/look-at-horizon.js"
+	import "../aframe/look-at-horizon.js";
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
 	const wandLevel = ref(0);
+
+	const endSound = ref(null);
 
 	const changeLightColor = (color) => {
 		console.log("changeLightColor to", color);
@@ -31,6 +33,12 @@
 	const handleLevelUp = () => {
 		wandLevel.value++;
 		console.log("Wand level up to ", wandLevel.value);
+	};
+
+	const end = () => {
+		console.log("End of the game!");
+		wandLevel.value = -1;
+		endSound.value.components.sound.playSound();
 	};
 </script>
 
@@ -43,6 +51,33 @@
 		obb-collider="showColliders: false"
 		:fog="'type: exponential; color: ' + lightColor + '; density: 0.01'">
 		<a-assets @loaded="allAssetsLoaded = true">
+			<!-- charge all the sounds -->
+			<a-asset-item
+				id="correct-choice"
+				response-type="arraybuffer"
+				src="assets/sounds/correct-choice.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="good-result"
+				response-type="arraybuffer"
+				src="assets/sounds/goodresult.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="light-up-candle"
+				response-type="arraybuffer"
+				src="assets/sounds/match-lighting-candle.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="success-sound"
+				response-type="arraybuffer"
+				src="assets/sounds/short-success-sound-glockenspiel-treasure-video-game.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="success-1"
+				response-type="arraybuffer"
+				src="assets/sounds/success-1.mp3"
+				preload="auto"></a-asset-item>
+
 			<!-- charge all the objects -->
 			<a-asset-item id="magic-wand" src="assets/objects/magic_wand.glb"></a-asset-item>
 			<a-asset-item id="ceil-lantern" src="assets/objects/lantern.glb"></a-asset-item>
@@ -56,13 +91,15 @@
 			<a-asset-item id="book-open" src="assets/objects/book_open.glb"></a-asset-item>
 			<a-asset-item id="black-cat" src="assets/objects/black_cat.glb"></a-asset-item>
 
-			<!-- charge a texture -->
+			<!-- charge all the textures -->
 			<img id="wood-texture" src="/assets/textures/wooden-background.jpg" />
 			<img id="portal-texture" src="/assets/textures/portalTexture.jpg" />
 		</a-assets>
 
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="0.5"></a-light>
+
+			<a-sound ref="endSound" src="#good-result" volume="1" positional="false" position="0 40 0"></a-sound>
 
 			<Wand
 				position="0 1.5 -0.5"
@@ -75,7 +112,7 @@
 			<TheBlueRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
 			<TheGreenRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
 			<TheRedRoom :lightColor="lightColor" @levelUp="handleLevelUp" />
-			<TheWhiteRoom :lightColor="lightColor" />
+			<TheWhiteRoom :lightColor="lightColor" @end="end" />
 			<TheEndRoom :lightColor="lightColor" />
 		</template>
 
