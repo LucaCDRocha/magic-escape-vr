@@ -8,8 +8,10 @@
 
 	const y = 32;
 	const roomColor = "white";
+
+	const emit = defineEmits(["end"]);
 </script>
 
 <template>
-	<TheRoom :y="y" :lightColor="lightColor" :roomColor="roomColor" />
+	<TheRoom :y="y" :lightColor="lightColor" :roomColor="roomColor" @end="emit('end')" />
 </template>

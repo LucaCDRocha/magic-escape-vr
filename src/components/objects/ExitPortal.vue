@@ -6,6 +6,8 @@
 		rotation: { type: String, default: "0 0 0" },
 		open: { type: Boolean, default: false },
 	});
+
+	const emit = defineEmits(["end"]);
 </script>
 
 <template>
@@ -17,6 +19,8 @@
 			position="0 190 0"
 			rotation="0 0 0"
 			scale="100 190 200"
-			:y="40" />
+			:y="40"
+			@click="emit('end')"
+			/>
 	</a-entity>
 </template>

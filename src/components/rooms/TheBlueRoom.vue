@@ -12,6 +12,8 @@
 	const lvlUpColor = "green";
 	const isSuccess = ref(false);
 
+	const clickSound = ref(null);
+
 	const mots = {
 		1: "books",
 		2: "cat",
@@ -32,6 +34,7 @@
 	const handleNumClick = (num) => {
 		currentSequence.value.push(num);
 		mot.value = mots[num];
+		clickSound.value.components.sound.playSound();
 
 		if (currentSequence.value.length > rightSequence.length) {
 			currentSequence.value.shift();
@@ -60,19 +63,21 @@
 		align="center"></a-text>
 
 	<a-entity :position="`0 ${y + 0.7} 2.94`" rotation="0 180 0">
-		<a-plane
+		<a-box
 			v-for="(num, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
 			:key="index"
 			:position="`${(index % 3) * 0.4 - 0.4} ${Math.floor(index / 3) * 0.4} 0`"
 			width="0.3"
 			height="0.3"
+			depth="0.01"
 			color="gray"
 			obb-collider
 			clickable
 			@obbcollisionstarted="handleNumClick(num)"
 			@click="handleNumClick(num)">
-			<a-text :value="num" color="black" align="center" position="0 0 0"></a-text>
-		</a-plane>
+			<a-text :value="num" color="black" align="center" position="0 0 0.01"></a-text>
+		</a-box>
+		<a-sound ref="clickSound" src="#correct-choice" volume="1"></a-sound>
 	</a-entity>
 
 	<a-text :position="`-1.73 ${y + 1} 1.76`" rotation="-90 123 0" align="center" color="orange" value="f a d e" />
