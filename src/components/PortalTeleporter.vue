@@ -33,6 +33,7 @@
     :id="`portal-${id}`"
     geometry="primitive: circle; radius: 1"
     clickable
+    emit-when-near="target: #sphere-wand; distance: 0.5; event: click"
     :teleport-camera-rig="`
       x: ${x};
       y: ${y};
