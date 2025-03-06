@@ -63,20 +63,20 @@
 		opacity="0.8"
 		align="center"></a-text>
 
-	<a-entity :position="`0 ${y + 0.7} 2.94`" rotation="0 180 0">
+	<a-entity :position="`0 ${y + 0.7} 3`" rotation="0 180 0">
 		<a-box
 			v-for="(num, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
 			:key="index"
 			:position="`${(index % 3) * 0.4 - 0.4} ${Math.floor(index / 3) * 0.4} 0`"
 			width="0.3"
 			height="0.3"
-			depth="0.01"
+			depth="0.11"
 			color="gray"
 			obb-collider
 			clickable
 			@obbcollisionstarted="handleNumClick(num)"
 			@click="handleNumClick(num)">
-			<a-text :value="num" color="black" align="center" position="0 0 0.01"></a-text>
+			<a-text :value="num" color="black" align="center" position="0 0 0.055"></a-text>
 		</a-box>
 		<a-sound ref="clickSound" src="#correct-choice" volume="1"></a-sound>
 	</a-entity>

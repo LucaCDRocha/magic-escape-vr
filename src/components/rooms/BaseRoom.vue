@@ -50,7 +50,7 @@
 		src="#wood-texture"
 		material="roughness: 2; metalness: 0"></a-box>
 	<a-entity
-		:geometry="`primitive: plane; width: ${size - 0.1}; height: ${size - 0.1}`"
+		:geometry="`primitive: plane; width: ${size - 0.2}; height: ${size - 0.2}`"
 		:position="`${position[0]} ${position[1]} ${position[2]}`"
 		rotation="-90 0 0"
 		data-role="nav-mesh"
