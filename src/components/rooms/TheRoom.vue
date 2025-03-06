@@ -34,9 +34,11 @@
 	const levelUpElement = ref(null);
 
 	const soundSucced = ref(null);
+	const soundClick = ref(null);
 
 	const levelUp = () => {
 		console.log("Level up!");
+		soundClick.value.components.sound.playSound();
 		levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 3} 0; dur: 100;`);
 		levelUpElement.value.querySelector("a-light").setAttribute("animation", "property: intensity; to: 0; dur: 100;");
 		setTimeout(() => {
@@ -75,6 +77,7 @@
 			@click="levelUp()"></a-sphere>
 		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="0"></a-light>
 		<a-sound ref="soundSucced" src="#success-1" volume="1"></a-sound>
+		<a-sound ref="soundClick" src="#success-sound" volume="1"></a-sound>
 	</a-entity>
 
 	<BaseRoom :position="[0, y, 0]" :size="6" />
