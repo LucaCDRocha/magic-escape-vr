@@ -27,12 +27,12 @@
 					<h4>Interaction</h4>
 					<ul>
 						<li>
-							Desktop – Aim with the cursor and click left to interact for changing rooms use right click and
-							move the wand in the direction of a color
+							Desktop – Aim with the cursor and click left to interact with objects. For changing room color
+							use right click and move the wand in the direction of a color
 						</li>
 						<li>
-							VR/AR – Use the wand to interact with objects and use any button to being able to change room by
-							choosing a color
+							VR/AR – Use the tip of the wand to interact with objects. For changing room color press any
+							button of the right controller and touch a color with the tip of the wand
 						</li>
 					</ul>
 				</section>
