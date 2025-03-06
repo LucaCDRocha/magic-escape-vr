@@ -14,4 +14,12 @@
 
 <template>
 	<TheRoom :y="y" :lightColor="lightColor" :roomColor="roomColor" @end="emit('end')" />
+
+	<a-text
+		value="You can escape now!"
+		:position="`0 ${y + 2} 2.95`"
+		rotation="0 180 0"
+		color="white"
+		opacity="0.8"
+		align="center"></a-text>
 </template>

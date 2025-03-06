@@ -59,7 +59,8 @@
 		:value="isSuccess ? 'You found it!' : `How many ${mot}?`"
 		:position="`0 ${y + 2} 2.95`"
 		rotation="0 180 0"
-		color="blue"
+		color="darkblue"
+		opacity="0.8"
 		align="center"></a-text>
 
 	<a-entity :position="`0 ${y + 0.7} 2.94`" rotation="0 180 0">

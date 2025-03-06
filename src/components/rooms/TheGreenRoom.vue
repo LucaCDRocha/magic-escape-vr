@@ -41,4 +41,12 @@
 		:isSuccess="allCandlesLit"
 		@lightUp="handleLightUp()"
 		@levelUp="$emit('levelUp')" />
+
+	<a-text
+		:value="allCandlesLit ? 'It is better now!' : `It is dark here...`"
+		:position="`0 ${y + 2} 2.95`"
+		rotation="0 180 0"
+		color="darkgreen"
+		opacity="0.3"
+		align="center"></a-text>
 </template>
