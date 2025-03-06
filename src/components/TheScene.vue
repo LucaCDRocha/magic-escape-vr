@@ -21,7 +21,7 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
-	const wandLevel = ref(0);
+	const wandLevel = ref(3);
 
 	const endSound = ref(null);
 
@@ -101,7 +101,7 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="0.5"></a-light>
 
-			<a-entity sound="src: #finish; volume: 0.5; positional: false" position="0 40 0" ref="endSound"></a-entity>
+			<a-entity sound="src: #finish; volume: 0.4; positional: false" position="0 40 0" ref="endSound"></a-entity>
 
 			<Wand
 				position="0 1.5 -0.5"

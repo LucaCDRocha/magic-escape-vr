@@ -78,7 +78,7 @@
 			@click="handleNumClick(num)">
 			<a-text :value="num" color="black" align="center" position="0 0 0.055"></a-text>
 		</a-box>
-		<a-entity ref="clickSound" sound="poolSize: 4; src: #correct-choice; volume: 1" position="0 0 0"></a-entity>
+		<a-entity ref="clickSound" sound="poolSize: 4; src: #correct-choice; volume: 1.5" position="0 0 0"></a-entity>
 	</a-entity>
 
 	<a-text :position="`-1.73 ${y + 1} 1.76`" rotation="-90 123 0" align="center" color="orange" value="f a d e" />

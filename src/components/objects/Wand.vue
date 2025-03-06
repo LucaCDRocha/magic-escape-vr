@@ -24,6 +24,7 @@
 			magicWand.setAttribute("position", "-1 0 -25");
 
 			isGrabbed.value = !isGrabbed.value;
+			teleportSound.value.components.sound.playSound();
 			emit("colorChange", "blue");
 		}
 		if (rightHand) {
@@ -112,6 +113,7 @@
 					intensity="0.5"
 					animation="property: intensity; to: 1; dir: alternate; dur: 2000; loop: true">
 				</a-light>
+				<a-entity ref="teleportSound" sound="poolSize: 3; src: #teleport; volume: 1" position="0 0 0"></a-entity>
 			</a-entity>
 		</a-entity>
 	</a-entity>
@@ -132,6 +134,5 @@
 					@click="selectColor(color)"></a-sphere>
 			</template>
 		</a-entity>
-		<a-entity ref="teleportSound" sound="poolSize: 3; src: #teleport; volume: 1" position="0 0 0"></a-entity>
 	</a-entity>
 </template>
