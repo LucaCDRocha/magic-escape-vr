@@ -37,7 +37,6 @@
 	const soundClick = ref(null);
 
 	const levelUp = () => {
-		console.log("Level up!");
 		soundClick.value.components.sound.playSound();
 		levelUpElement.value.setAttribute("animation", `property: position; to: 0 ${props.y + 3} 0; dur: 100;`);
 		levelUpElement.value.querySelector("a-light").setAttribute("animation", "property: intensity; to: 0; dur: 100;");

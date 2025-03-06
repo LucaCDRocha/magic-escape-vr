@@ -31,7 +31,6 @@
 
 		if (currentSequence.value.join("") === rightSequence.join("")) {
 			isSequenceFinish.value = true;
-			console.log("Sequence is correct!");
 		}
 	};
 </script>

@@ -26,17 +26,14 @@
 	const endSound = ref(null);
 
 	const changeLightColor = (color) => {
-		console.log("changeLightColor to", color);
 		lightColor.value = color;
 	};
 
 	const handleLevelUp = () => {
 		wandLevel.value++;
-		console.log("Wand level up to ", wandLevel.value);
 	};
 
 	const end = () => {
-		console.log("End of the game!");
 		wandLevel.value = -1;
 		endSound.value.components.sound.playSound();
 	};

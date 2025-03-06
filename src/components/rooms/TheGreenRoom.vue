@@ -23,11 +23,9 @@
 		}
 
 		nbCandlesLit.value++;
-		console.log("handleLightUp", nbCandlesLit.value);
 
 		if (nbCandlesLit.value === nbOfCandles) {
 			allCandlesLit.value = true;
-			console.log("All candles are lit!");
 		}
 	};
 </script>
