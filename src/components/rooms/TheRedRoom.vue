@@ -45,6 +45,14 @@
 		:isSuccess="isSequenceFinish"
 		@levelUp="$emit('levelUp')" />
 
+	<a-text
+		:value="isSequenceFinish ? 'You played it right!' : `La la la...`"
+		:position="`0 ${y + 2} 2.95`"
+		rotation="0 180 0"
+		color="darkred"
+		opacity="0.8"
+		align="center"></a-text>
+
 	<!-- Add a xylophone -->
 	<Xylophone :position="`-1.73 ${y + 1} 1.76`" rotation="0 -57 0" @playNote="playNote($event)" />
 </template>
