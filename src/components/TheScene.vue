@@ -55,7 +55,7 @@
 				src="assets/sounds/correct-choice.mp3"
 				preload="auto"></a-asset-item>
 			<a-asset-item
-				id="good-result"
+				id="finish"
 				response-type="arraybuffer"
 				src="assets/sounds/goodresult.mp3"
 				preload="auto"></a-asset-item>
@@ -73,6 +73,11 @@
 				id="success-1"
 				response-type="arraybuffer"
 				src="assets/sounds/success-1.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="teleport"
+				response-type="arraybuffer"
+				src="assets/sounds/transitional-swipe.mp3"
 				preload="auto"></a-asset-item>
 
 			<!-- charge all the objects -->
@@ -96,7 +101,7 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="0.5"></a-light>
 
-			<a-sound ref="endSound" src="#good-result" volume="1" positional="false" position="0 40 0"></a-sound>
+			<a-entity sound="src: #finish; volume: 0.5; positional: false" position="0 40 0" ref="endSound"></a-entity>
 
 			<Wand
 				position="0 1.5 -0.5"

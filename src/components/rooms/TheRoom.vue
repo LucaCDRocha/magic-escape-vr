@@ -75,8 +75,8 @@
 			:emit-when-near="`target: #sphere-wand; distance: 0.05`"
 			@click="levelUp()"></a-sphere>
 		<a-light type="point" radius="0.05" :color="lvlUpColor" intensity="0"></a-light>
-		<a-sound ref="soundSucced" src="#success-1" volume="1"></a-sound>
-		<a-sound ref="soundClick" src="#success-sound" volume="1"></a-sound>
+		<a-entity ref="soundSucced" sound="src: #success-1; volume: 1" position="0 0 0"></a-entity>
+		<a-entity ref="soundClick" sound="src: #success-sound; volume: 1" position="0 0 0"></a-entity>
 	</a-entity>
 
 	<BaseRoom :position="[0, y, 0]" :size="6" />

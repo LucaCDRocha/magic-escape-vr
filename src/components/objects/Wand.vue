@@ -14,6 +14,8 @@
 	const isGrabbed = ref(false);
 	const isVR = document.querySelector("a-scene").is("vr-mode");
 
+	const teleportSound = ref(null);
+
 	const handleGrab = () => {
 		const magicWand = document.querySelector("#wand");
 		const rightHand = document.querySelector("#hand-right");
@@ -31,6 +33,7 @@
 
 	const selectColor = (color) => {
 		keyDown.value = false;
+		teleportSound.value.components.sound.playSound();
 		emit("colorChange", color);
 	};
 
@@ -129,5 +132,6 @@
 					@click="selectColor(color)"></a-sphere>
 			</template>
 		</a-entity>
+		<a-entity ref="teleportSound" sound="poolSize: 3; src: #teleport; volume: 1" position="0 0 0"></a-entity>
 	</a-entity>
 </template>

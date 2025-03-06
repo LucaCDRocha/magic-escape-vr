@@ -54,7 +54,7 @@
 			:visible="canLightUp ? isLightUp : false">
 			<a-sphere radius="0.05" :color="color" shader="flat"></a-sphere>
 			<a-light type="point" :color="color" intensity="0.5" distance="5"></a-light>
-			<a-sound ref="candleLightUpSound" src="#light-up-candle" volume="4"></a-sound>
+			<a-entity ref="candleLightUpSound" sound="poolSize: 4; src: #light-up-candle; volume: 4" position="0 0 0"></a-entity>
 		</a-entity>
 	</a-entity>
 </template>
