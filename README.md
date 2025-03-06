@@ -79,3 +79,9 @@ npm run dev-expose
 
 > [!NOTE]
 > The certificate is self-signed, so you will probably have to confirm access to the resource in your browser.
+
+---
+
+## License
+
+![MIT License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge&color=%23262626)
