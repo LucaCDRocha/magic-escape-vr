@@ -9,15 +9,15 @@
 <template>
   <a-entity
     id="camera-rig"
+    simple-navmesh-constraint="navmesh: [data-role='nav-mesh']; height: 0;"
     movement-controls="camera: #head;"
-    disable-in-vr="component: movement-controls;"
+    disable-in-vr__navmesh="component: simple-navmesh-constraint;"
+    disable-in-vr__movement="component: movement-controls;"
   >
 
       <a-entity
         id="head"
         look-controls="pointerLockEnabled: true"
-        simple-navmesh-constraint="navmesh: [data-role='nav-mesh']; height: 1.65;"
-        disable-in-vr="component: simple-navmesh-constraint;"
         camera
         position="0 1.65 0"
       >

@@ -21,22 +21,19 @@
 
 	const allAssetsLoaded = ref(false);
 	const lightColor = ref("white");
-	const wandLevel = ref(0);
+	const wandLevel = ref(3);
 
 	const endSound = ref(null);
 
 	const changeLightColor = (color) => {
-		console.log("changeLightColor to", color);
 		lightColor.value = color;
 	};
 
 	const handleLevelUp = () => {
 		wandLevel.value++;
-		console.log("Wand level up to ", wandLevel.value);
 	};
 
 	const end = () => {
-		console.log("End of the game!");
 		wandLevel.value = -1;
 		endSound.value.components.sound.playSound();
 	};
@@ -58,7 +55,7 @@
 				src="assets/sounds/correct-choice.mp3"
 				preload="auto"></a-asset-item>
 			<a-asset-item
-				id="good-result"
+				id="finish"
 				response-type="arraybuffer"
 				src="assets/sounds/goodresult.mp3"
 				preload="auto"></a-asset-item>
@@ -76,6 +73,11 @@
 				id="success-1"
 				response-type="arraybuffer"
 				src="assets/sounds/success-1.mp3"
+				preload="auto"></a-asset-item>
+			<a-asset-item
+				id="teleport"
+				response-type="arraybuffer"
+				src="assets/sounds/transitional-swipe.mp3"
 				preload="auto"></a-asset-item>
 
 			<!-- charge all the objects -->
@@ -99,7 +101,7 @@
 		<template v-if="allAssetsLoaded">
 			<a-light type="ambient" :color="lightColor" intensity="0.5"></a-light>
 
-			<a-sound ref="endSound" src="#good-result" volume="1" positional="false" position="0 40 0"></a-sound>
+			<a-entity sound="src: #finish; volume: 0.4; positional: false" position="0 40 0" ref="endSound"></a-entity>
 
 			<Wand
 				position="0 1.5 -0.5"

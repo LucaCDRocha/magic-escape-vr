@@ -27,12 +27,12 @@
 					<h4>Interaction</h4>
 					<ul>
 						<li>
-							Desktop – Aim with the cursor and click left to interact with objects. For changing room color
-							use right click and move the wand in the direction of a color
+							Desktop – Aim with the cursor and click left to interact with objects. For changing room color use
+							right click and move the wand in the direction of a color
 						</li>
 						<li>
-							VR/AR – Use the tip of the wand to interact with objects. For changing room color press any
-							button of the right controller and touch a color with the tip of the wand
+							VR/AR – Use the tip of the wand to interact with objects. For changing room color press any button
+							of the right controller and touch a color with the tip of the wand
 						</li>
 					</ul>
 				</section>
@@ -293,6 +293,18 @@
 						from
 						<a
 							href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=82807"
+							>Pixabay</a
+						>
+					</dd>
+					<dd>
+						by
+						<a
+							href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=211689"
+							>floraphonic</a
+						>
+						from
+						<a
+							href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=211689"
 							>Pixabay</a
 						>
 					</dd>

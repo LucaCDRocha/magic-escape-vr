@@ -21,15 +21,12 @@ AFRAME.registerComponent("teleport-camera-rig", {
 	onEvent: function () {
 		// Put the rig at the specified position
 		if (isFinite(this.data.x)) {
-			console.log("x" + this.data.x);
 			this.data.rig.object3D.position.x = this.data.x;
 		}
 		if (isFinite(this.data.y)) {
-			console.log("y" + this.data.y);
 			this.data.rig.object3D.position.y = this.data.y;
 		}
 		if (isFinite(this.data.z)) {
-			console.log("z" + this.data.z);
 			this.data.rig.object3D.position.z = this.data.z;
 		}
 		// this.data.rig.object3D.position.x = this.data.x;
