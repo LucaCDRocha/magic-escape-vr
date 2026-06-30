@@ -11,7 +11,7 @@ const fullReloadPlugin = {
 
 export default defineConfig(({ command, mode }) => {
   const config = {
-    base: "/",
+    base: (command === "build" && !process.env.GITHUB_ACTIONS) ? "/magic-escape/" : "/",
     plugins: [
       basicSsl(),
       vue({
